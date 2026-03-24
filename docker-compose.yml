@@ -1,0 +1,9 @@
+services:
+  taiga-mcp:
+    build: .
+    environment:
+      - TAIGA_URL=${TAIGA_URL}
+      - TAIGA_USERNAME=${TAIGA_USERNAME}
+      - TAIGA_PASSWORD=${TAIGA_PASSWORD}
+    stdin_open: true
+    restart: unless-stopped
