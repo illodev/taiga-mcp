@@ -96,3 +96,55 @@ Or with Docker:
   }
 }
 ```
+
+## Agent Customizations
+
+This project includes ready-to-use GitHub Copilot customizations under `.github/` so your AI agents can work effectively with the Taiga MCP tools.
+
+```
+.github/
+├── agents/                              # Custom agents
+│   ├── taiga-project-manager.agent.md   # Orchestrator — delegates to sub-agents
+│   ├── taiga-scrum-master.agent.md      # Sprint planning & backlog management
+│   ├── taiga-issue-tracker.agent.md     # Bug triage & issue classification
+│   └── taiga-reporter.agent.md          # Project reports & analytics
+├── instructions/                        # Context-aware guidelines
+│   ├── taiga-mcp-usage.instructions.md  # Tool naming, ID resolution, common patterns
+│   └── taiga-workflows.instructions.md  # Scrum/Kanban recipes, feature flows
+└── skills/                              # On-demand workflow skills
+    ├── sprint-planning/SKILL.md         # Create & manage sprints
+    ├── backlog-grooming/SKILL.md        # Refine stories, epics, and points
+    ├── issue-triage/SKILL.md            # Classify and prioritize issues
+    ├── project-setup/SKILL.md           # Configure a new project from scratch
+    ├── project-reporting/SKILL.md       # Generate stats and reports
+    ├── team-management/SKILL.md         # Manage members, roles, permissions
+    └── wiki-documentation/SKILL.md      # Create and organize wiki pages
+```
+
+### Custom Agents
+
+| Agent                     | Role                                                                       | Invoke                   |
+| ------------------------- | -------------------------------------------------------------------------- | ------------------------ |
+| **Taiga Project Manager** | Orchestrates all project management tasks, delegates to specialized agents | `@Taiga Project Manager` |
+| **Taiga Scrum Master**    | Sprint planning, backlog grooming, velocity tracking                       | `@Taiga Scrum Master`    |
+| **Taiga Issue Tracker**   | Bug triage, issue classification, severity/priority management             | `@Taiga Issue Tracker`   |
+| **Taiga Reporter**        | Project reports, burndown analysis, team activity summaries                | `@Taiga Reporter`        |
+
+### Skills (slash commands)
+
+| Skill                 | Description                                                            |
+| --------------------- | ---------------------------------------------------------------------- |
+| `/sprint-planning`    | Plan sprints, assign stories, track burndown                           |
+| `/backlog-grooming`   | Create epics, refine stories, set points, order backlog                |
+| `/issue-triage`       | Create and classify issues with priority/severity                      |
+| `/project-setup`      | Set up a new project with statuses, roles, tags, and custom attributes |
+| `/project-reporting`  | Generate sprint, project, and team reports                             |
+| `/team-management`    | Invite members, assign roles, manage permissions                       |
+| `/wiki-documentation` | Create and organize wiki pages and navigation                          |
+
+### Instructions
+
+Loaded automatically when relevant:
+
+- **taiga-mcp-usage** — Tool naming conventions, ID resolution patterns, error handling
+- **taiga-workflows** — Ready-made recipes for Scrum sprints, Kanban boards, feature development, bug resolution
