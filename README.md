@@ -1,6 +1,10 @@
 # Taiga MCP Server
 
-Full-featured MCP (Model Context Protocol) server for [Taiga](https://taiga.io) project management.
+[![npm version](https://img.shields.io/npm/v/@illodev/taiga-mcp)](https://www.npmjs.com/package/@illodev/taiga-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/@illodev/taiga-mcp)](https://www.npmjs.com/package/@illodev/taiga-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+Full-featured MCP (Model Context Protocol) server for [Taiga](https://taiga.io) project management. Provides comprehensive access to Taiga's API v1, enabling AI agents to manage projects, epics, user stories, tasks, issues, sprints, wiki pages, memberships, roles, and more.
 
 ## Features
 
@@ -35,6 +39,29 @@ Covers **all** Taiga API v1 endpoints:
 | `TAIGA_USERNAME` | Taiga username                                        |
 | `TAIGA_PASSWORD` | Taiga password                                        |
 
+### MCP Client Configuration (recommended)
+
+The easiest way to use this server is via `npx` — no installation required:
+
+```json
+{
+  "mcpServers": {
+    "taiga": {
+      "command": "npx",
+      "args": ["-y", "@illodev/taiga-mcp"],
+      "env": {
+        "TAIGA_URL": "https://taiga.example.com",
+        "TAIGA_USERNAME": "your-user",
+        "TAIGA_PASSWORD": "your-pass"
+      }
+    }
+  }
+}
+```
+
+> **VS Code / GitHub Copilot** — add the entry above to your `mcp.json`.  
+> **Claude Desktop** — add it under `mcpServers` in `claude_desktop_config.json`.
+
 ### Docker Compose
 
 ```bash
@@ -55,46 +82,6 @@ pnpm run dev
 ```bash
 pnpm run build
 pnpm start
-```
-
-## MCP Client Configuration
-
-Add to your MCP client config (e.g. Claude Desktop):
-
-```json
-{
-  "mcpServers": {
-    "taiga": {
-      "command": "node",
-      "args": ["dist/index.js"],
-      "cwd": "/path/to/taiga-mcp",
-      "env": {
-        "TAIGA_URL": "https://taiga.example.com",
-        "TAIGA_USERNAME": "your-user",
-        "TAIGA_PASSWORD": "your-pass"
-      }
-    }
-  }
-}
-```
-
-Or with Docker:
-
-```json
-{
-  "mcpServers": {
-    "taiga": {
-      "command": "docker",
-      "args": ["compose", "run", "--rm", "-i", "taiga-mcp"],
-      "cwd": "/path/to/taiga-mcp",
-      "env": {
-        "TAIGA_URL": "https://taiga.example.com",
-        "TAIGA_USERNAME": "your-user",
-        "TAIGA_PASSWORD": "your-pass"
-      }
-    }
-  }
-}
 ```
 
 ## Agent Customizations
