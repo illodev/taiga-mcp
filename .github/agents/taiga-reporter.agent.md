@@ -1,7 +1,29 @@
 ---
 name: "Taiga Reporter"
 description: "Generate Taiga project reports and analytics. Use when: creating status reports, sprint burndown analysis, issue statistics, team activity summaries, velocity tracking, project health dashboards."
-tools: [taiga/*]
+tools:
+  - taiga/taiga_projects_list
+  - taiga/taiga_projects_get
+  - taiga/taiga_projects_get_by_slug
+  - taiga/taiga_projects_stats
+  - taiga/taiga_projects_member_stats
+  - taiga/taiga_projects_issues_stats
+  - taiga/taiga_milestones_list
+  - taiga/taiga_milestones_get
+  - taiga/taiga_milestones_stats
+  - taiga/taiga_timeline_user
+  - taiga/taiga_timeline_profile
+  - taiga/taiga_timeline_project
+  - taiga/taiga_userstories_list
+  - taiga/taiga_userstories_filters_data
+  - taiga/taiga_tasks_list
+  - taiga/taiga_tasks_filters_data
+  - taiga/taiga_issues_list
+  - taiga/taiga_issues_filters_data
+  - taiga/taiga_epics_list
+  - taiga/taiga_epics_filters_data
+  - taiga/taiga_users_stats
+  - taiga/taiga_resolver_project
 user-invocable: true
 argument-hint: "Describe the report you need (e.g. 'weekly status report for project X')"
 ---

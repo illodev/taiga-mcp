@@ -90,32 +90,45 @@ This project includes ready-to-use GitHub Copilot customizations under `.github/
 
 ```
 .github/
-├── agents/                              # Custom agents
-│   ├── taiga-project-manager.agent.md   # Orchestrator — delegates to sub-agents
-│   ├── taiga-scrum-master.agent.md      # Sprint planning & backlog management
-│   ├── taiga-issue-tracker.agent.md     # Bug triage & issue classification
-│   └── taiga-reporter.agent.md          # Project reports & analytics
-├── instructions/                        # Context-aware guidelines
-│   ├── taiga-mcp-usage.instructions.md  # Tool naming, ID resolution, common patterns
-│   └── taiga-workflows.instructions.md  # Scrum/Kanban recipes, feature flows
-└── skills/                              # On-demand workflow skills
-    ├── sprint-planning/SKILL.md         # Create & manage sprints
-    ├── backlog-grooming/SKILL.md        # Refine stories, epics, and points
-    ├── issue-triage/SKILL.md            # Classify and prioritize issues
-    ├── project-setup/SKILL.md           # Configure a new project from scratch
-    ├── project-reporting/SKILL.md       # Generate stats and reports
-    ├── team-management/SKILL.md         # Manage members, roles, permissions
-    └── wiki-documentation/SKILL.md      # Create and organize wiki pages
+├── agents/                                  # Custom agents (10)
+│   ├── taiga-project-manager.agent.md       # Orchestrator — delegates to sub-agents
+│   ├── taiga-user-stories.agent.md          # User story CRUD, backlog, story points
+│   ├── taiga-tasks.agent.md                 # Task CRUD, statuses, comments
+│   ├── taiga-issues.agent.md                # Bug triage & issue classification
+│   ├── taiga-epics.agent.md                 # Epic CRUD, story-to-epic linking
+│   ├── taiga-sprints.agent.md               # Sprint lifecycle & burndown
+│   ├── taiga-wiki.agent.md                  # Wiki pages, links, history
+│   ├── taiga-team.agent.md                  # Members, roles, permissions
+│   ├── taiga-reporter.agent.md              # Project reports & analytics (read-only)
+│   └── taiga-project-setup.agent.md         # Project config, webhooks, export/import
+├── instructions/                            # Context-aware guidelines
+│   ├── taiga-mcp-usage.instructions.md      # Tool naming, ID resolution, common patterns
+│   ├── taiga-workflows.instructions.md      # Scrum/Kanban recipes, feature flows
+│   └── taiga-orchestration.instructions.md  # Agent delegation & coordination
+└── skills/                                  # On-demand workflow skills
+    ├── sprint-planning/SKILL.md             # Create & manage sprints
+    ├── backlog-grooming/SKILL.md            # Refine stories, epics, and points
+    ├── issue-triage/SKILL.md                # Classify and prioritize issues
+    ├── project-setup/SKILL.md               # Configure a new project from scratch
+    ├── project-reporting/SKILL.md           # Generate stats and reports
+    ├── team-management/SKILL.md             # Manage members, roles, permissions
+    └── wiki-documentation/SKILL.md          # Create and organize wiki pages
 ```
 
 ### Custom Agents
 
-| Agent                     | Role                                                                       | Invoke                   |
-| ------------------------- | -------------------------------------------------------------------------- | ------------------------ |
-| **Taiga Project Manager** | Orchestrates all project management tasks, delegates to specialized agents | `@Taiga Project Manager` |
-| **Taiga Scrum Master**    | Sprint planning, backlog grooming, velocity tracking                       | `@Taiga Scrum Master`    |
-| **Taiga Issue Tracker**   | Bug triage, issue classification, severity/priority management             | `@Taiga Issue Tracker`   |
-| **Taiga Reporter**        | Project reports, burndown analysis, team activity summaries                | `@Taiga Reporter`        |
+| Agent                     | Role                                                                    | Invoke                   |
+| ------------------------- | ----------------------------------------------------------------------- | ------------------------ |
+| **Taiga Project Manager** | Orchestrator — delegates to specialized agents, resolves context        | `@Taiga Project Manager` |
+| **Taiga User Stories**    | User story CRUD, backlog/kanban ordering, story points, comments        | `@Taiga User Stories`    |
+| **Taiga Tasks**           | Task CRUD, task statuses, comments, custom attributes                   | `@Taiga Tasks`           |
+| **Taiga Issues**          | Bug triage, issue classification, severity/priority management          | `@Taiga Issues`          |
+| **Taiga Epics**           | Epic CRUD, story-to-epic linking, epic custom attributes                | `@Taiga Epics`           |
+| **Taiga Sprints**         | Sprint lifecycle, burndown stats, milestone management                  | `@Taiga Sprints`         |
+| **Taiga Wiki**            | Wiki page CRUD, navigation links, comments, history                     | `@Taiga Wiki`            |
+| **Taiga Team**            | Member invitations, role management, user profiles                      | `@Taiga Team`            |
+| **Taiga Reporter**        | Project reports, burndown analysis, team activity summaries (read-only) | `@Taiga Reporter`        |
+| **Taiga Project Setup**   | Project creation, status/workflow config, webhooks, export/import       | `@Taiga Project Setup`   |
 
 ### Skills (slash commands)
 
@@ -129,9 +142,19 @@ This project includes ready-to-use GitHub Copilot customizations under `.github/
 | `/team-management`    | Invite members, assign roles, manage permissions                       |
 | `/wiki-documentation` | Create and organize wiki pages and navigation                          |
 
+### Expanded Documentation
+
+For detailed guides and examples, see the [`docs/`](docs/) folder:
+
+- [**Getting Started**](docs/getting-started.md) — Installation, configuration, and first steps
+- [**Agent Architecture**](docs/agent-architecture.md) — Hub-and-spoke delegation, agent roles, and chaining
+- [**Usage Examples**](docs/examples.md) — Practical examples for every agent domain
+- [**Advanced Workflows**](docs/advanced-workflows.md) — Multi-domain recipes: feature dev, sprint planning, bug lifecycle, project bootstrap
+
 ### Instructions
 
 Loaded automatically when relevant:
 
 - **taiga-mcp-usage** — Tool naming conventions, ID resolution patterns, error handling
 - **taiga-workflows** — Ready-made recipes for Scrum sprints, Kanban boards, feature development, bug resolution
+- **taiga-orchestration** — Agent delegation patterns and multi-domain workflow coordination
